@@ -1,6 +1,6 @@
 // Require the necessary discord.js classes
-const { Client, Events, GatewayIntentBits, IntentsBitField } = require('discord.js');
 require('dotenv').config();
+const { Client, Events, GatewayIntentBits, IntentsBitField } = require('discord.js');
 
 // Create a new client instance
 const client = new Client({
@@ -13,17 +13,30 @@ const client = new Client({
     ]
 });
 
-let prefix = "!";
+client.on('interactionCreate', (interaction) => {
+    if (!interaction.isChatInputCommand()) return;
 
-client.on('messageCreate', (message) => {
-    if (message.content === prefix + 'hello') {
-        message.reply('Hi man !');
+    if (interaction.commandName === 'hey') {
+        interaction.reply ('Hey ' + interaction.user.toString() + ' !');
     }
-    console.log(message.content);
-})
+
+    if (interaction.commandName === 'ping') {
+        interaction.reply ('pong !');
+    }
+});
+
+// Première commande avec un prefix
+// let prefix = "!";
+
+// client.on('messageCreate', (message) => {
+//     if (message.content === prefix + 'hello') {
+//         message.reply('Hi man !');
+//     }
+//     console.log(message.content);
+// })
 
 client.once(Events.ClientReady, c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
-client.login(process.env.token);
+client.login(process.env.TOKEN);
