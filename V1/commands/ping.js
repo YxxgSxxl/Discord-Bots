@@ -1,3 +1,5 @@
+//////////// EXEMPLE OF A COMMAND //////////////
+
 const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
