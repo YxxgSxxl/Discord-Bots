@@ -1,6 +1,6 @@
 // Require the necessary discord.js classes
 require('dotenv').config();
-const { Client, Events, GatewayIntentBits, IntentsBitField } = require('discord.js');
+const { Client, Events, GatewayIntentBits, IntentsBitField, Message } = require('discord.js');
 
 // Create a new client instance
 const client = new Client({
@@ -13,6 +13,8 @@ const client = new Client({
     ]
 });
 
+
+// Hey and Ping Command
 client.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
@@ -25,6 +27,7 @@ client.on('interactionCreate', (interaction) => {
     }
 });
 
+// Add Command
 client.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) return;
   
@@ -36,6 +39,16 @@ client.on('interactionCreate', (interaction) => {
     }
   });
   
+// Clear Command
+client.on('interactionCreate', (msg) => {
+    if (!msg.isChatInputCommand()) return;
+
+    if (msg.commandName === 'clear') {
+        msg.reply('Okay I clear the chan !')
+        .then(msg => console.log(`Deleted message from ${msg.user}`))
+        .catch(console.error);
+    }
+});
 
 // Première commande avec un prefix
 // let prefix = "!";

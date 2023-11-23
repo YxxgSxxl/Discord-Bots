@@ -44,6 +44,16 @@ const commands = [
             },
         ],
     },
+
+    {
+        name: 'clear',
+        description: '🧹| Clear a text channel.',
+    },
+
+    {
+        name: 'help',
+        description: '📄| Shows the list of commands.',
+    }
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
